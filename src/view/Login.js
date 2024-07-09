@@ -25,30 +25,28 @@ function Login() {
       }, []);
 
     const handleLogin = async () => {
-        try{
-            const res = await axios.post('http://localhost:5000/api/auth/login', { username, password });
-            setMessage(`Login successful`);
+        try {
+            const res = await axios.post('https://nameless-wave-52640-8e1195117f69.herokuapp.com/api/auth/login', { username, password });
+            setMessage('Login successful');
             setMessageType('success');
-        } catch (error){
+            window.location.href = 'https://jfassj.projectsutd.online/unidad1'; // Redirecciona al usuario después de un inicio de sesión exitoso
+        } catch (error) {
             setMessage('Error logging in');
             setMessageType('error');
         }
     };
 
-
-  return (
-    <div className="App" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', height: '100vh' }}>
-        <div className='login-container'>
-        <h1>Login</h1>
-      <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
-      <p className={messageType}>{message}</p>
+    return (
+        <div className="App" style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', height: '100vh' }}>
+            <div className='login-container'>
+                <h1>Login</h1>
+                <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button onClick={handleLogin}>Login</button>
+                <p className={messageType}>{message}</p>
+            </div>
         </div>
-        
-    </div>
-    
-  )
+    );
 }
 
-export default Login
+export default Login;
